@@ -37,12 +37,15 @@ class FirebaseAuthAPI {
     }
   }
 
-  void signUp(String email, String password) async {
+  void signUp(String email, String password, String fname, String lname) async {
     UserCredential credential;
+
     try {
       credential = await auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
+        fname: fname,
+        lname: lname,
       );
       if (credential.user != null) {
         saveUserToFirestore(credential.user?.uid, email);
